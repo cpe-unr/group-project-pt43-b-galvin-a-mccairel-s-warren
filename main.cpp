@@ -1,5 +1,7 @@
 /** @file */
 #include <iostream>
+#include "wav.h"
+#include "waveHeader.h"
 
 /**
  * \brief   The function bar.
@@ -24,8 +26,11 @@
 void fn(){
 
 }
-
+const std::string testfile = "yes-16-bit-mono.wav";
 int main() {
     std::cout << "Hello, World!" << std::endl;
+    Wav wav;
+    wav.readFile(testfile);
+
     return 0;
 }
