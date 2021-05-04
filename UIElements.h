@@ -1,5 +1,9 @@
 //Created by Brennan Galvin on 5/3/2021
 //Header for object that stores values for user input and functions to print basic elements
+
+#ifndef UIElements_H
+#define UIElements_H
+
 #include <string>
 class UIElements {
 private:
@@ -28,3 +32,5 @@ public:
 	void promptUser();
 	void promptUser1();
 };
+
+#endif

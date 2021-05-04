@@ -1,5 +1,5 @@
-wavManager: main.cpp main.o wav.o echo.o noisegate.o Processor.o normalization.o UIElements.o processorChoice.o
-	g++ -std=c++11 main.o wav.o echo.o noisegate.o Processor.o normalization.o UIElements.o processorChoice.o -o wavManager
+wavManager: main.cpp main.o wav.o echo.o noisegate.o Processor.o normalization.o UIElements.o processorChoice.o csv.o
+	g++ -std=c++11 main.o wav.o echo.o noisegate.o Processor.o normalization.o UIElements.o processorChoice.o csv.o -o wavManager
 
 main.o: main.cpp
 	g++ -c -std=c++11 main.cpp
@@ -24,6 +24,9 @@ UIElements.o: UIElements.cpp UIElements.h
 
 processorChoice.o: processorChoice.cpp processorChoice.h
 	g++ -c -std=c++11 processorChoice.cpp
+
+csv.o: csv.cpp csv.h
+	g++ -c -std=c++11 csv.cpp
 
 clean:
 	rm *.o wavManager
