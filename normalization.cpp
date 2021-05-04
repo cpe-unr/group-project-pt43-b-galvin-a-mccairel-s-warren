@@ -3,4 +3,12 @@
 #include <iostream>
 #include <cmath>
 
-void Normalization::NormalizeAudio(){}
+Normalization::Normalization(float desiredPeak): desiredPeak(desiredPeak){
+
+}
+void Normalization::processBuffer(unsigned char* buffer, int bufferSize){
+
+}
+void Normalization::processShortBuffer(short* shortBuffer, int bufferSize){
+
+}
