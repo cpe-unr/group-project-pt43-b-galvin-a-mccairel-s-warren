@@ -13,3 +13,5 @@ public:
     virtual void processBuffer(unsigned char* buffer, int bufferSize) = 0;
     virtual void processShortBuffer(short* shortBuffer, int bufferSize) = 0;
 };
+
+#endif
