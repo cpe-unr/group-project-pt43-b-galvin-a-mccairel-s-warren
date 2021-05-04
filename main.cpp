@@ -16,6 +16,7 @@ using std::string;
 #include "Processor.h"
 #include "noisegate.h"
 #include "echo.h"
+#include "processorChoice.h"
 /**
  * \brief   The function bar.
  *
@@ -67,6 +68,7 @@ int main(int argc, char* argv[])
 {
     wav_hdr wavHeader;
     int headerSize = sizeof(wav_hdr), filelength = 0;
+    int newUserInput;
 
     const char* filePath;
     string input;
@@ -102,7 +104,6 @@ int main(int argc, char* argv[])
         int8_t* buffer = new int8_t[BUFFER_SIZE];
         while ((bytesRead = fread(buffer, sizeof buffer[0], BUFFER_SIZE / (sizeof buffer[0]), wavFile)) > 0)
         {
-            /** SAVE DATA HERE **/
         }
         delete [] buffer;
         buffer = nullptr;
@@ -118,6 +119,33 @@ int main(int argc, char* argv[])
         cout << "Sampling Rate              :" << wavHeader.SamplesPerSec << endl;
         cout << "Data length                :" << wavHeader.Subchunk2Size << endl;
         cout << "Audio Format               :" << wavHeader.AudioFormat << endl;
+        cout << endl;
+
+        UIElements UIElement;
+        ProcessorChoice choice;
+        UIElement.promptUser();
+        if(UIElement.getUserInput() == 1){
+            UIElement.promptUser1();
+            UIElement.printProccesing();
+            UIElement.getArtist();
+	        UIElement.getSongTitle();
+	        UIElement.getGenre();
+	        UIElement.getTrackNumber();
+	        UIElement.getYear();
+	        UIElement.getComments();
+            UIElement.setUserInput(newUserInput);
+            choice.promptUserFirst();
+            choice.promptUserSecond();
+            choice.promptUserThird();
+            choice.printProccesing();
+        }
+        else{
+            choice.promptUserFirst();
+            choice.promptUserSecond();
+            choice.promptUserThird();
+            choice.printProccesing();
+        }
+
 
     }
     fclose(wavFile);    
