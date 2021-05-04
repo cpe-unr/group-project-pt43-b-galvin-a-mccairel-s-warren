@@ -23,7 +23,7 @@ public:
 	std::string getComments();
 	
 	
-	
+	UIElements();
 	void printProccesing();
 	void promptUser();
 	void promptUser1();

@@ -12,7 +12,10 @@ using std::string;
 
 #include "wav.h"
 #include "waveHeader.h"
-
+#include "UIElements.h"
+#include "Processor.h"
+#include "noisegate.h"
+#include "echo.h"
 /**
  * \brief   The function bar.
  *
@@ -115,9 +118,11 @@ int main(int argc, char* argv[])
         cout << "Sampling Rate              :" << wavHeader.SamplesPerSec << endl;
         cout << "Data length                :" << wavHeader.Subchunk2Size << endl;
         cout << "Audio Format               :" << wavHeader.AudioFormat << endl;
+
     }
-    fclose(wavFile);
+    fclose(wavFile);    
     return 0;
+
 }
 
 // find the file size

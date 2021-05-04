@@ -2,6 +2,8 @@
 #include <iostream>
 #include <istream>
 
+UIElements::UIElements(){}
+
 void UIElements::printProccesing() {
 
 	std::cout << "Processing..." << std::endl;
