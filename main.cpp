@@ -67,6 +67,7 @@ int getFileSize(FILE* testfile);
 int main(int argc, char* argv[])
 {
     wav_hdr wavHeader;
+    Wav wav;
     int headerSize = sizeof(wav_hdr), filelength = 0;
     int newUserInput;
 
@@ -142,6 +143,33 @@ int main(int argc, char* argv[])
         else{
             choice.promptUserFirst();
             choice.promptUserSecond();
+            if(choice.getUserInput2() == 3){
+                //Echo processing
+                //keeps segmentation faulting
+                wav.readFile(testfile);
+                Processor *processor = new Echo(32000);
+                processor->processBuffer(wav.getBuffer(),wav.getBufferSize());
+                wav.writeFile(testfile);
+                std::cout << "Processing Echo Successful" << std::endl;
+            }
+            else if(choice.getUserInput2() == 2){
+                //Noisegate processing
+                //keeps segmentation faulting
+                wav.readFile(testfile);
+                Processor *noisegate = new NoiseGate(7);
+                noisegate->processBuffer(wav.getBuffer(),wav.getBufferSize());
+                wav.writeFile(testfile);
+                std::cout << "Processing Noisegate Successful" << std::endl;
+            }
+            else if(choice.getUserInput2() == 1){
+                wav.readFile(testfile);
+                //uncomment when normalization is finished
+                // Processor *normalization = new 
+                //normalization->processBuffer(wav.getBuffer(), wav.getBufferSize());
+                //wav.writefile(testfile);
+                //std::cout << "Processing Normalization Successful" << std::endl;
+
+            }
             choice.promptUserThird();
             choice.printProccesing();
         }

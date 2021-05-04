@@ -4,17 +4,19 @@
 //i.e. zero volume level
 const uint8_t ZERO = 128;
 
-void processBuffer(unsigned char* buffer, int bufferSize){
+void NoiseGate::processBuffer(unsigned char* buffer, int bufferSize){
     for(int i = 0; i < bufferSize; i++){
         if((ZERO - 5) < buffer[i] < (ZERO +5)){
             buffer[i] = ZERO;
         }
     }
 }
-void processShortBuffer(short* shortBuffer, int bufferSize){
+void NoiseGate::processShortBuffer(short* shortBuffer, int bufferSize){
     for(int i = 0; i < bufferSize; i++){
         if(-100 < shortBuffer[i] < 100){
             shortBuffer[i] = 0;
         }
     }
 }
+
+NoiseGate::NoiseGate(uint8_t threshold): threshold(threshold){}

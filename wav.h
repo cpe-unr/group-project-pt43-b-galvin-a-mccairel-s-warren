@@ -22,7 +22,11 @@ public:
      *                 this is expected to be a .wav file.
      */
     void readFile(const std::string &filename);
-    //virtual ~Wav();
+    void writeFile(const std::string &outFileName);
+    unsigned char* buffer = NULL;
+    virtual ~Wav();
+    unsigned char *getBuffer();
+    int getBufferSize() const;
 
 };
 

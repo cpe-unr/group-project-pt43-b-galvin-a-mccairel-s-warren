@@ -9,6 +9,7 @@
 #include "processorChoice.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 void ProcessorChoice::promptUserFirst(){
     using namespace std;
@@ -34,6 +35,7 @@ void ProcessorChoice::promptUserSecond(){
 }
 void ProcessorChoice::promptUserThird(){
     using namespace std;
+    //prompt user if they want to process file again
     if(userInput1 == 1){
     cout << "Would you like to process the file again?" << std::endl;
 	cout << "1. Yes" << std::endl;
@@ -62,7 +64,24 @@ void ProcessorChoice::promptUserThird(){
 }
 
 void ProcessorChoice::printProccesing() {
+    //let user know it's processing
     if(userInput1 ==1){
 	std::cout << "Processing..." << std::endl;
     }
+}
+
+int ProcessorChoice::getUserInput1(){
+    return userInput1;
+}
+
+int ProcessorChoice::getUserInput2(){
+    return userInput2;
+}
+
+int ProcessorChoice::getUserInput3(){
+    return userInput3;
+}
+
+std::string ProcessorChoice::getUserInput4(){
+    return userInput4;
 }

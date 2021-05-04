@@ -3,6 +3,7 @@
 #include "Processor.h"
 
 class NoiseGate: public Processor{
+    const uint8_t threshold;
 public:
     /**
     * Default constructor
@@ -24,5 +25,7 @@ public:
      * @param bufferSize the size of the wav buffer for bounds
      */
     void processShortBuffer(short* shortBuffer, int bufferSize) override;
+
+    NoiseGate(uint8_t threshold);
 };
 #endif

@@ -9,11 +9,15 @@ class ProcessorChoice
     int userInput2;
     int userInput3;
     std::string userInput4;
+
 public:
     void promptUserFirst();
     void promptUserSecond();
     void promptUserThird();
     void printProccesing();
+    int getUserInput1();
+    int getUserInput2();
+    int getUserInput3();
+    std::string getUserInput4();
 };
-
 #endif

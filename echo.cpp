@@ -1,4 +1,8 @@
 #include "echo.h"
+#include "Processor.h"
+#include <cmath>
+#include <iostream>
+
 Echo::Echo(int delay): delay(delay){
 
 }

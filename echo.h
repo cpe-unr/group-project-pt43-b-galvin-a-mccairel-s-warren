@@ -1,7 +1,9 @@
 #ifndef ECHO_H
 #define ECHO_H
 #include "Processor.h"
+#include <cstdint>
 #include <cmath>
+#include <utility>
 
 const float MAX_FLOAT = 1/32767;
 

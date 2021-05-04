@@ -17,3 +17,23 @@ void Wav::readFile(const std::string &filename){
 
     }
 }
+
+void Wav::writeFile(const std::string &outFileName) {
+    std::ofstream outFile(outFileName, std::ios::out | std::ios::binary);
+    outFile.write((char*)&wavHeader,sizeof(wav_header));
+    outFile.write((char*)buffer, wavHeader.data_bytes);
+    outFile.close();
+}
+
+unsigned char *Wav::getBuffer(){
+    return buffer;
+}
+
+Wav::~Wav() {
+    if(buffer != NULL)
+        delete[] buffer;
+}
+
+int Wav::getBufferSize() const {
+    return wavHeader.data_bytes;
+}
