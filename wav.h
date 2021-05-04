@@ -22,11 +22,25 @@ public:
      *                 this is expected to be a .wav file.
      */
     void readFile(const std::string &filename);
+
+    /**
+     * A method for writing to desired outFile
+     * 
+     * @param outFileName new file to be written to
+     */
     void writeFile(const std::string &outFileName);
-    unsigned char* buffer = NULL;
+
+    /** dtor made for buffers allocated on the heap */
     virtual ~Wav();
+
+    /** Accessor method for audio buffer */
     unsigned char *getBuffer();
+
+    /** Accessor method for bufferSize */
     int getBufferSize() const;
+
+public:
+    unsigned char* buffer = NULL;
 
 };
 
