@@ -1,15 +1,28 @@
-//Created by Sariah Warren on 5/3/21
-
-#include <iostream>
-#include "Processor.h"
-
 #ifndef NOISEGATE_H
 #define NOISEGATE_H
+#include "Processor.h"
 
-class Noisegate : public Processor{
-    const uint8_t threshold;
+class NoiseGate: public Processor{
 public:
-    virtual void processBuffer(unsigned char* buffer, int bufferSize);
-    Noisegate(uint8_t threshold);
+    /**
+    * Default constructor
+    */
+    NoiseGate() = default;
+
+    /**
+     * Overrides the abstract method processBuffer to noisegate the buffer
+     * 
+     * @param buffer a buffer of unsigned char pointers
+     * @param bufferSize the size of the wav buffer for bounds
+     */
+    void processBuffer(unsigned char* buffer, int bufferSize) override;
+    
+    /**
+     * Overrides the abstract method processBuffer to noisegate the buffer
+     * 
+     * @param shortBuffer a buffer of short pointers
+     * @param bufferSize the size of the wav buffer for bounds
+     */
+    void processShortBuffer(short* shortBuffer, int bufferSize) override;
 };
 #endif

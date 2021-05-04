@@ -1,21 +1,30 @@
-//Sariah Warren on May 3 2021
 #include "echo.h"
-#include "Processor.h"
-#include <iostream>
+Echo::Echo(int delay): delay(delay){
 
+}
 void Echo::processBuffer(unsigned char* buffer, int bufferSize){
-    float adj_n;
-    float adj_delayed_n;
-    float echolevel = 0.5f;
-    float val;
-        for(int n = 0; n < bufferSize - delay; n++){
-            adj_n = (float)(buffer[n] - ZERO);
-            adj_delayed_n = (float)(buffer[n + delay] - ZERO);
-            val = adj_n * echolevel + adj_delayed_n * SCALE_FACTOR + ZERO;
-            buffer[n+delay] = (unsigned char)(round(val));
-        }
-    float f = 2.9f;
-    auto j = (unsigned char)f;
+    float index, delayedIndex, val;
+    float echoLevel = 0.5f;
+    for(int i = 0; i < bufferSize - delay; i++){
+        //set the index to a floating range of -128 to 128
+        index = (float)(buffer[i]-128);
+        //do the same for your index plus desired delay
+        delayedIndex = (float)(buffer[i+delay]-128);
+        val = echoLevel*index + delayedIndex*echoLevel + 128;
+        //reassign buffer to unsigned char after adding delay
+        buffer[i+delay] = (unsigned char)(round(val));
+    }
+
+}
+void Echo::processShortBuffer(short* shortBuffer, int bufferSize){
+    float index, delayedIndex, val;
+    float echoLevel = 0.5f;
+    for(int i = 0; i < bufferSize - delay; i+=2){
+        //same as above except no need to zero signed short
+        index = (float)(shortBuffer[i]);
+        delayedIndex = (float)(shortBuffer[i+delay]*MAX_FLOAT);
+        val = (echoLevel*index + delayedIndex*echoLevel)*(32767);
+        shortBuffer[i+delay] = (short)(round(val));
+    }
 }
 
-Echo::Echo(int delay) : delay(delay) {}

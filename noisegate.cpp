@@ -1,14 +1,20 @@
-#include "Processor.h"
 #include "noisegate.h"
 
-const uint8_t ZERO = 0x80;
+//since 8-bit wav is read from the range 0-255, we set zero = 128
+//i.e. zero volume level
+const uint8_t ZERO = 128;
 
-void Noisegate::processBuffer(unsigned char* buffer, int bufferSize){
-    for(int n = 1; n < bufferSize; n++){
-        if(buffer[n] > (ZERO - threshold) && buffer[n] < (ZERO + threshold)){
-            buffer[n] = ZERO;
+void processBuffer(unsigned char* buffer, int bufferSize){
+    for(int i = 0; i < bufferSize; i++){
+        if((ZERO - 5) < buffer[i] < (ZERO +5)){
+            buffer[i] = ZERO;
         }
-
     }
 }
-Noisegate::Noisegate(uint8_t threshold): threshold(threshold){}
+void processShortBuffer(short* shortBuffer, int bufferSize){
+    for(int i = 0; i < bufferSize; i++){
+        if(-100 < shortBuffer[i] < 100){
+            shortBuffer[i] = 0;
+        }
+    }
+}
